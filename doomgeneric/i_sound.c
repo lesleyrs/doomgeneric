@@ -18,7 +18,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#if defined(FEATURE_SOUND) && !defined(__DJGPP__)
+#if defined(FEATURE_SOUND) && !defined(__DJGPP__) && !defined(__wasm) || defined(__EMSCRIPTEN__)
 #include <SDL_mixer.h>
 #endif
 
@@ -111,9 +111,15 @@ static void InitSfxModule(boolean use_sfx_prefix)
         // Is the sfx device in the list of devices supported by
         // this module?
 
+#if defined(__wasm) && !defined(__EMSCRIPTEN__)
+        if (SndDeviceInList(SNDDEVICE_NONE, 
+                            sound_modules[i]->sound_devices,
+                            sound_modules[i]->num_sound_devices))
+#else
         if (SndDeviceInList(snd_sfxdevice, 
                             sound_modules[i]->sound_devices,
                             sound_modules[i]->num_sound_devices))
+#endif
         {
             // Initialize the module
 

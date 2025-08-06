@@ -23,7 +23,7 @@
 #ifdef FEATURE_SOUND
 
 
-#ifdef __DJGPP__
+#if defined(__DJGPP__) || defined(__wasm) && !defined(__EMSCRIPTEN__)
 
 
 #define SHORT(x)  ((signed short) (x))
