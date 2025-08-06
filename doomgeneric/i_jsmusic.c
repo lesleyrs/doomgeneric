@@ -55,6 +55,7 @@ static int current_music_volume;
 
 
 typedef struct {
+	int dummy;
 } MIDI;
 
 // Currently playing music track.
@@ -108,7 +109,7 @@ static void I_JS_PlaySong(void *handle, boolean looping)
 		return;
 	}
 
-	// current_track_music = (MIDI *) handle;
+	current_track_music = (MIDI *) handle;
 	current_track_loop = looping;
 
 	// retval = play_midi(current_track_music, looping);
@@ -159,7 +160,7 @@ static void I_JS_StopSong(void)
 
 static void I_JS_UnRegisterSong(void *handle)
 {
-	// MIDI *midi = (MIDI *) handle;
+	MIDI *midi = (MIDI *) handle;
 
 	if (!music_initialized)
 	{
@@ -231,10 +232,11 @@ static void *I_JS_RegisterSong(void *data, int len)
 		ConvertMus(data, len, filename);
 	}
 
-	// Load the MIDI. In an ideal world we'd load it directly from memory but JS
+	// Load the MIDI. In an ideal world we'd load it directly from memory but allegro
 	// doesn't support that so we have to generate a temporary file.
 
 	// music = load_midi(filename);
+	music = NULL;
 
 	if (music == NULL)
 	{

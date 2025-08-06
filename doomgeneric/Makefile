@@ -16,7 +16,6 @@ ifeq ($(DEBUG),0)
 CFLAGS+=-Oz -ffast-math -flto
 LIBS+=-lc
 else
-# TODO: lags on chrome due to a browser timing bug, turning on profiler fixes it
 CFLAGS+=-g -O0
 LIBS+=-lc-dbg
 endif
