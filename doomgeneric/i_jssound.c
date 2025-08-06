@@ -253,8 +253,8 @@ static void I_JS_UpdateSoundParams(int handle, int vol, int sep)
 		return;
 	}
 
-	// voice_set_volume(js_voices[handle], vol);
-	// voice_set_pan(js_voices[handle], sep);
+	JS_setAudioVolume((float)vol / UINT8_MAX);
+	// voice_set_pan(js_voices[handle], sep); // TODO
 }
 
 //
