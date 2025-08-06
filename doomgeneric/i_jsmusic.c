@@ -220,17 +220,17 @@ static void *I_JS_RegisterSong(void *data, int len)
 		return NULL;
 	}
 
-	filename = M_TempFile("doom.mid");
+	// filename = M_TempFile("doom.mid");
 
-	if (IsMid(data, len) && len < MAXMIDLENGTH)
-	{
-		M_WriteFile(filename, data, len);
-	}
-	else
-	{
-		// Assume a MUS file and try to convert
-		ConvertMus(data, len, filename);
-	}
+	// if (IsMid(data, len) && len < MAXMIDLENGTH)
+	// {
+	// 	M_WriteFile(filename, data, len);
+	// }
+	// else
+	// {
+	// 	// Assume a MUS file and try to convert
+	// 	ConvertMus(data, len, filename);
+	// }
 
 	// Load the MIDI. In an ideal world we'd load it directly from memory but allegro
 	// doesn't support that so we have to generate a temporary file.
@@ -238,16 +238,16 @@ static void *I_JS_RegisterSong(void *data, int len)
 	// music = load_midi(filename);
 	music = NULL;
 
-	if (music == NULL)
-	{
-		// Failed to load
-		fprintf(stderr, "Error loading midi\n");
-	}
+	// if (music == NULL)
+	// {
+	// 	// Failed to load
+	// 	fprintf(stderr, "Error loading midi\n");
+	// }
 
-	// Remove the temporary MIDI file;
-	remove(filename);
+	// // Remove the temporary MIDI file;
+	// remove(filename);
 
-	free(filename);
+	// free(filename);
 
 	return music;
 }
