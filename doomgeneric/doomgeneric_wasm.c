@@ -148,7 +148,7 @@ bool onkey(void* userData, bool pressed, int key, int code, int modifiers) {
 
 void DG_Init()
 {
-    JS_createCanvas(640, 400);
+    JS_createCanvas(640, 400, "2d");
     JS_addKeyEventListener(NULL, onkey);
 }
 
